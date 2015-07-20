@@ -44,6 +44,7 @@ typedef NS_ENUM(NSUInteger, XLFormSectionInsertMode) {
 
 @property (nonatomic) NSString * title;
 @property (nonatomic) NSString * footerTitle;
+@property (nonatomic, copy, readonly) NSString *tag;
 @property (readonly) NSMutableArray * formRows;
 
 @property (readonly) XLFormSectionInsertMode sectionInsertMode;
@@ -62,6 +63,7 @@ typedef NS_ENUM(NSUInteger, XLFormSectionInsertMode) {
 +(instancetype)formSectionWithTitle:(NSString *)title multivaluedSection:(BOOL)multivaluedSection DEPRECATED_ATTRIBUTE DEPRECATED_MSG_ATTRIBUTE("Use formSectionWithTitle:sectionType: instead");
 +(instancetype)formSectionWithTitle:(NSString *)title sectionOptions:(XLFormSectionOptions)sectionOptions;
 +(instancetype)formSectionWithTitle:(NSString *)title sectionOptions:(XLFormSectionOptions)sectionOptions sectionInsertMode:(XLFormSectionInsertMode)sectionInsertMode;
++(instancetype)formSectionWithTitle:(NSString *)title tag:(NSString *)tag;
 
 -(BOOL)isMultivaluedSection;
 -(void)addFormRow:(XLFormRowDescriptor *)formRow;

@@ -216,6 +216,17 @@ NSString * const XLValidationStatusErrorKey = @"XLValidationStatusErrorKey";
 }
 
 
+- (XLFormSectionDescriptor *)sectionWithTag:(NSString *)tag
+{
+    for (XLFormSectionDescriptor *section in self.allSections) {
+        if ([section.tag isEqualToString:tag]) {
+            return section;
+        }
+    }
+    return nil;
+}
+
+
 -(XLFormRowDescriptor *)formRowWithTag:(NSString *)tag
 {
     return self.allRowsByTag[tag];

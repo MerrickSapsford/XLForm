@@ -75,12 +75,13 @@
     return self;
 }
 
--(instancetype)initWithTitle:(NSString *)title sectionOptions:(XLFormSectionOptions)sectionOptions sectionInsertMode:(XLFormSectionInsertMode)sectionInsertMode{
+-(instancetype)initWithTitle:(NSString *)title sectionOptions:(XLFormSectionOptions)sectionOptions sectionInsertMode:(XLFormSectionInsertMode)sectionInsertMode tag:(NSString *)tag {
     self = [self init];
     if (self){
         _sectionInsertMode = sectionInsertMode;
         _sectionOptions = sectionOptions;
         _title = title;
+        _tag = tag;
         if ([self canInsertUsingButton]){
             _multivaluedAddButton = [XLFormRowDescriptor formRowDescriptorWithTag:nil rowType:XLFormRowDescriptorTypeButton title:@"Add Item"];
             [_multivaluedAddButton.cellConfig setObject:@(NSTextAlignmentLeft) forKey:@"textLabel.textAlignment"];
@@ -115,7 +116,11 @@
 
 +(instancetype)formSectionWithTitle:(NSString *)title sectionOptions:(XLFormSectionOptions)sectionOptions sectionInsertMode:(XLFormSectionInsertMode)sectionInsertMode
 {
-    return [[[self class] alloc] initWithTitle:title sectionOptions:sectionOptions sectionInsertMode:sectionInsertMode];
+    return [[[self class] alloc] initWithTitle:title sectionOptions:sectionOptions sectionInsertMode:sectionInsertMode tag:nil];
+}
+
++ (instancetype)formSectionWithTitle:(NSString *)title tag:(NSString *)tag {
+    return [[[self class]alloc] initWithTitle:title sectionOptions:XLFormSectionOptionNone sectionInsertMode:XLFormSectionInsertModeLastRow tag:tag];
 }
 
 -(BOOL)isMultivaluedSection
